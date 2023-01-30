@@ -84,7 +84,11 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 		catch (Exception e) {
 			// Try - Catch pour empêcher pgm de planter tant que les interfaces
 			// CheckersSquareGui et CheckersPieceGui n'existent pas
-			e.printStackTrace();
+			System.err.println(
+				e.getMessage() + "\n"
+				+ "=> Cette erreur est \"normale\" tant que n'ont pas été implémentées\n"
+				+ "   les interfaces CheckersSquareGui et CheckersPieceGui"
+			);
 		}
 	}
 	
@@ -93,7 +97,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 	 * Ecoute les événements sur les PieceGui
 	 */
 	private void checkersPieceGuiHandle(MouseEvent mouseEvent) {
-		
+
 		// Recherche PieceGui sélectionnée
 		ImageView selectedPiece = (ImageView) mouseEvent.getSource();
 
