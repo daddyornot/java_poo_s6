@@ -18,15 +18,15 @@ import model.ModelConfig;
 /**
  * @author francoiseperrin
  *
- * Le controller a 2 responsabilités :
- * 	- il écoute les clics de souris de l'utilisateur sur la vue
- * 	- il invoque la méthode moveCapturePromote() du model
- * 	  si actions (move + prise + promotion) OK sur model alors elles sont propagées sur view 
- *    (invoque méthode moveCapturePromote() de la view)
+ * Le controller a 2 responsabilitÃ©s :
+ * 	- il Ã©coute les clics de souris de l'utilisateur sur la vue
+ * 	- il invoque la mÃ©thode moveCapturePromote() du model
+ * 	  si actions (move + prise + promotion) OK sur model alors elles sont propagÃ©es sur view 
+ *    (invoque mÃ©thode moveCapturePromote() de la view)
  *    
- * La view et le model ne gérant pas les coordonnées des cases de la même manière
+ * La view et le model ne gÃ©rant pas les coordonnÃ©es des cases de la mÃªme maniÃ¨re
  * le controller assure la conversion :
- * 	- index de 0 à  99 pour la view
+ * 	- index de 0 Ã Â  99 pour la view
  * 	- Coord (col, ligne) pour le model ['a'..'j'][10..1]
  * 
  */
@@ -36,8 +36,8 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 	private BoardGame<Coord> model;
 	private View view;
 
-	// Cette valeur est MAJ chaque fois que l'utilisateur clique sur une pièce
-	// Elle doit être conservée pour être utilisée lorsque l'utilisateur clique sur une case
+	// Cette valeur est MAJ chaque fois que l'utilisateur clique sur une piÃ¨ce
+	// Elle doit Ãªtre conservÃ©e pour Ãªtre utilisÃ©e lorsque l'utilisateur clique sur une case
 	private int toMovePieceIndex;	
 
 	public Controller() {
@@ -56,7 +56,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 
 	//////////////////////////////////////////////////////////////////
 	//
-	// Controller vu comme un médiateur entre la view et le model
+	// Controller vu comme un mÃ©diateur entre la view et le model
 	//
 	//////////////////////////////////////////////////////////////////
 
@@ -69,7 +69,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 
 	////////////////////////////////////////////////////////////////////
 	//
-	// Controller vu comme un Ecouteur des évènement souris sur la view
+	// Controller vu comme un Ecouteur des Ã©vÃ¨nement souris sur la view
 	//
 	////////////////////////////////////////////////////////////////////
 
@@ -82,7 +82,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 				checkersPieceGuiHandle(mouseEvent);
 		}
 		catch (Exception e) {
-			// Try - Catch pour empêcher pgm de planter tant que les interfaces
+			// Try - Catch pour empÃªcher pgm de planter tant que les interfaces
 			// CheckersSquareGui et CheckersPieceGui n'existent pas
 			e.printStackTrace();
 		}
@@ -90,14 +90,14 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 	
 	/**
 	 * @param mouseEvent
-	 * Ecoute les événements sur les PieceGui
+	 * Ecoute les Ã©vÃ©nements sur les PieceGui
 	 */
 	private void checkersPieceGuiHandle(MouseEvent mouseEvent) {
 		
-		// Recherche PieceGui sélectionnée
+		// Recherche PieceGui sÃ©lectionnÃ©e
 		ImageView selectedPiece = (ImageView) mouseEvent.getSource();
 
-		// Recherche et fixe coordonnée de la pièce sélectionnée 
+		// Recherche et fixe coordonnÃ©e de la piÃ¨ce sÃ©lectionnÃ©e 
 		CheckersSquareGui parentSquare = (CheckersSquareGui)  selectedPiece.getParent();
 		this.setToMovePieceIndex(parentSquare.getSquareCoord());
 		
@@ -105,23 +105,23 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 	}
 	/**
 	 * @param mouseEvent
-	 * Ecoute les événements sur les SquareGui
+	 * Ecoute les Ã©vÃ©nements sur les SquareGui
 	 */
 	private void checkersSquareGuiHandle(MouseEvent mouseEvent) {
 		System.out.println("ici");
-		// Recherche SquareGUI sélectionné
+		// Recherche SquareGUI sÃ©lectionnÃ©
 		CheckersSquareGui square = (CheckersSquareGui) mouseEvent.getSource();
 		int targetSquareIndex = square.getSquareCoord();
 
-		// Le controller va invoquer la méthode moveCapturePromotion() du model
-		// et si le model confirme que la pièce a bien été déplacée à cet endroit, 
-		// il invoquera une méthode de la view pour la rafraichir
+		// Le controller va invoquer la mÃ©thode moveCapturePromotion() du model
+		// et si le model confirme que la piÃ¨ce a bien Ã©tÃ© dÃ©placÃ©e Ã Â cet endroit, 
+		// il invoquera une mÃ©thode de la view pour la rafraichir
 		this.moveCapturePromote(this.getToMovePieceIndex(), targetSquareIndex);
 
-		// il n'y a plus de pièce à déplacer
+		// il n'y a plus de piÃ¨ce Ã  dÃ©placer
 		this.setToMovePieceIndex(-1);
 
-		// On évite que le parent ne récupère l'event
+		// On Ã©vite que le parent ne rÃ©cupÃ¨re l'event
 		mouseEvent.consume();
 	}
 
@@ -129,15 +129,15 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 	//////////////////////////////////////////////////////////////////
 	//
 	// Controller vu comme un Substitut du model 
-	// il invoque les méthodes du model 
-	// après actions de l'utilisateur sur la vue
+	// il invoque les mÃ©thodes du model 
+	// aprÃ¨s actions de l'utilisateur sur la vue
 	//
 	//////////////////////////////////////////////////////////////////
 
 	/**
-	 * Invoque méthode moveCapturePromote() du model (après transformation des coordonnées)
-	 * Si déplacement effectif sur model, invoque méthode actionOnGui() de la view
-	 * pour rafraichir affichage en fonction des données retournées par le model
+	 * Invoque mÃ©thode moveCapturePromote() du model (aprÃ¨s transformation des coordonnÃ©es)
+	 * Si dÃ©placement effectif sur model, invoque mÃ©thode actionOnGui() de la view
+	 * pour rafraichir affichage en fonction des donnÃ©es retournÃ©es par le model
 	 */
 	@Override
 	public OutputModelData<Integer> moveCapturePromote(Integer toMovePieceIndex, Integer targetSquareIndex) {
@@ -146,7 +146,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 
 		// TODO atelier 2
 
-		// Inutile de reconstituer un objetOutputModelData<Integer>, aucun client ne le récupère en mode local
+		// Inutile de reconstituer un objetOutputModelData<Integer>, aucun client ne le rÃ©cupÃ¨re en mode local
 		return outputControllerData;
 	}
 
@@ -154,7 +154,7 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 	/**
 	 * @param squareIndex
 	 * @param length
-	 * @return les coordonnées métier calculées à  partir de l'index du SquareGUI sous la PieceGUI
+	 * @return les coordonnÃ©es mÃ©tier calculÃ©es Ã Â  partir de l'index du SquareGUI sous la PieceGUI
 	 */
 	private Coord transformIndexToCoord (int squareIndex) {
 		Coord coord = null;

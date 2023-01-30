@@ -5,7 +5,7 @@ package model;
 /**
  * @author francoiseperrin
  *
- * Coordonnées des PieceModel
+ * CoordonnÃ©es des PieceModel
  */
 public class Coord implements Comparable<Coord>{
 	
@@ -51,11 +51,11 @@ public class Coord implements Comparable<Coord>{
 	/* (non-Javadoc)
 	 * @see java.lang.Comparable#compareTo(java.lang.Object)
 	 * 
-	 * La méthode compareTo() indique comment comparer un objet à l'objet courant
+	 * La mÃ©thode compareTo() indique comment comparer un objet Ã  l'objet courant
 	 * selon l'ordre dit naturel
-	 * Dans cet application, nous décidons que l'ordre naturel est celui 
-	 * correspondant au N° de la case d'un tableau 2D représenté par la Coord
-	 * ainsi le N° 1 correspond à la Coord ['a', 10], le N° 100 correspond à la Coord ['j', 1]  
+	 * Dans cet application, nous dÃ©cidons que l'ordre naturel est celui 
+	 * correspondant au NÂ° de la case d'un tableau 2D reprÃ©sentÃ© par la Coord
+	 * ainsi le NÂ° 1 correspond Ã  la Coord ['a', 10], le NÂ° 100 correspond Ã  la Coord ['j', 1]  
 	 */
 	@Override
 	public int compareTo(Coord o) {

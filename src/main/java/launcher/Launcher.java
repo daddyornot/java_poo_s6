@@ -31,31 +31,31 @@ public class Launcher extends Application {
 		super.init();
 		
 		///////////////////////////////////////////////////////////////////////////////////////
-		// Objet qui gère les aspects métier du jeu de dame :
+		// Objet qui gÃ¨re les aspects mÃ©tier du jeu de dame :
 		///////////////////////////////////////////////////////////////////////////////////////
 		
 		this.model = new Model();
 
 		
 		///////////////////////////////////////////////////////////////////////////////////////
-		// Objet qui contrôle les actions de la vue et les transmet au model
-		// il renvoie les réponses du model à  la vue
+		// Objet qui contrÃ´le les actions de la vue et les transmet au model
+		// il renvoie les rÃ©ponses du model Ã Â  la vue
 		///////////////////////////////////////////////////////////////////////////////////////
 		
 		this.controller = new Controller();
 		
 		
 		///////////////////////////////////////////////////////////////////////////////////////
-		// Fenêtre dans laquelle se dessine le damier est écoutée par controller
+		// FenÃªtre dans laquelle se dessine le damier est Ã©coutÃ©e par controller
 		///////////////////////////////////////////////////////////////////////////////////////
 				
 		this.view = new View(controller);
 		
-		// Controller doit pouvoir invoquer les méthodes du model
-		// il enverra ensuite des instructions à view qui relaiera à son objet Board
+		// Controller doit pouvoir invoquer les mÃ©thodes du model
+		// il enverra ensuite des instructions Ã  view qui relaiera Ã  son objet Board
 		// En mode Client/Server 
-		// Les actions devront être propagées sur les vues de chaque client et non pas seulement 
-		// sur celle qui a initié l'action 
+		// Les actions devront Ãªtre propagÃ©es sur les vues de chaque client et non pas seulement 
+		// sur celle qui a initiÃ© l'action 
 		 ((Mediator) controller).setView(view);
 		 ((Mediator) controller).setModel(model);
 	}
@@ -65,7 +65,7 @@ public class Launcher extends Application {
 	public void start (Stage primaryStage) {
 
 		primaryStage.setScene(new Scene(this.view, GuiConfig.HEIGHT, GuiConfig.HEIGHT));
-		primaryStage.setTitle("Jeu de dames - Version de départ");
+		primaryStage.setTitle("Jeu de dames - Version de dÃ©part");
 		primaryStage.show();
 	
 	}
