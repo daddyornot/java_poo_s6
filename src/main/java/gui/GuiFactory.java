@@ -1,8 +1,6 @@
 package gui;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.InputStream;
 
 import javafx.geometry.Insets;
 import javafx.scene.image.Image;
@@ -103,8 +101,8 @@ public class GuiFactory {
 	private static Image createImage(PieceSquareColor pieceColor, boolean ispawn) {
 
 		Image image = null;
-		String pieceImageFile = null, nomImageFile = null;
-		File g = new File("");
+		String nomImageFile = null;
+		InputStream imageFileInputStream = null;
 
 		if (ispawn) {
 			nomImageFile = pieceColor == PieceSquareColor.BLACK ? "PionNoir.png" : "PionBlanc.png";
@@ -113,11 +111,23 @@ public class GuiFactory {
 			nomImageFile = pieceColor == PieceSquareColor.BLACK ? "DameNoire.png" : "DameBlanche.png";
 		}
 
-		pieceImageFile = g.getAbsolutePath()+"/images/" + nomImageFile;	// TODO - attention au chemin
-		try {
-			image = new Image(new FileInputStream(pieceImageFile));
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		// Deux aspects à prendre en compte pour comprendre le .getResourceAsStream() ci-après :
+		//
+		// 1- Les bonnes pratiques pour résoudre des chemins relatifs ; lire :
+		//		* https://docs.oracle.com/javase/tutorial/uiswing/components/icon.html#getresource__1
+		//
+		// 2- La gestion des ressources par Maven dans sa configuration par défaut ; lire :
+		//		* https://maven.apache.org/plugins/maven-resources-plugin/
+		//		* https://maven.apache.org/plugins/maven-resources-plugin/examples/resource-directory.html
+		//
+		imageFileInputStream = GuiFactory.class.getResourceAsStream("/images/" + nomImageFile);
+
+		if (imageFileInputStream != null) {
+			image = new Image(imageFileInputStream);
+		} else {
+			System.err.printf(
+				"Fichier '%s' non trouvé pour la pièce %s (ispawn=%s)\n", 
+				nomImageFile, pieceColor, ispawn);
 		}
 		return image;
 	}
