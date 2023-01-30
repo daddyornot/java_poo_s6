@@ -1,5 +1,5 @@
 #!/bin/bash
-CPE_ARTEFACT_ID=ics2filrouge2
+CPE_ARTEFACT_ID=ics3filrouge
 CPE_PACKAGE=fr.cpe.$CPE_ARTEFACT_ID
 
 # @see https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
