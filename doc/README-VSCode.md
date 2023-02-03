@@ -6,7 +6,7 @@
 
 On a typical, standard Debian (or Ubuntu) linux distro, use the following paths for Java 1.8 / Java 11:
 
-```JSON
+```JSONC
 /*
  * From VSCode Command Palette (Menu "View" > "Command Palette...", or CTRL+MAJ+P),
  *   invoke action "Preferences: Open User Settings (JSON)"
