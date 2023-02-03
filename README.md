@@ -8,7 +8,9 @@ Ce dépôt contient le projet de départ pour les ateliers du module :
 
 ### IntelliJ
 
-Au lancement, "_Trust Maven config_" devrait suffir.
+Directement à partir d'IntelliJ, importer le projet depuis GitHub.  
+> __Répondre OUI__ à la question "__Trust and open Maven Project__" ?
+
 
 Le projet vient avec une "Run configuration" __ics3filrouge [javafx:run]__  
 qui permet de lancer 
