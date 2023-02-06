@@ -23,24 +23,27 @@
     <maven.compiler.target>11</maven.compiler.target>
   </properties>
 
-  <!--+
-      !   Un-comment if you want to use standard JDK + maven-managed JavaFX
-      !   Usage: mvn javafx:run 
-      !
   <dependencies>
-    <dependency>
-      <groupId>org.openjfx</groupId>
-      <artifactId>javafx-controls</artifactId>
-      <version>11</version>
-    </dependency>
+    <!--+
+        !   JUnit, for tests
+        +-->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    <!--+
+        !   Un-comment if you want to use standard JDK + maven-managed JavaFX
+        !   Usage: mvn javafx:run 
+        !
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-controls</artifactId>
+      <version>11</version>
+    </dependency>
+        +-->
   </dependencies>
-      +-->
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
