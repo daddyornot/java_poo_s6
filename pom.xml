@@ -23,6 +23,10 @@
     <maven.compiler.target>11</maven.compiler.target>
   </properties>
 
+  <!--+
+      !   Un-comment if you want to use standard JDK + maven-managed JavaFX
+      !   Usage: mvn javafx:run 
+      !
   <dependencies>
     <dependency>
       <groupId>org.openjfx</groupId>
@@ -36,6 +40,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+      +-->
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -80,14 +85,19 @@
           <version>3.0.0</version>
         </plugin>
       
+        <!--+
+            !   Un-comment if you want to use standard JDK + maven-managed JavaFX
+            !   Usage: mvn javafx:run 
+            !
         <plugin>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-maven-plugin</artifactId><!-- Usage: mvn javafx:run -->
+            <artifactId>javafx-maven-plugin</artifactId>
             <version>0.0.8</version>
             <configuration>
                 <mainClass>launcher.Launcher</mainClass>
             </configuration>
         </plugin>
+            +-->
 
       </plugins>
     </pluginManagement>
