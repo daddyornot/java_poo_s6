@@ -92,6 +92,7 @@
             !   Un-comment if you want to use standard JDK + maven-managed JavaFX
             !   Usage: mvn javafx:run 
             !
+            +-->
         <plugin>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-maven-plugin</artifactId>
@@ -100,7 +101,6 @@
                 <mainClass>launcher.Launcher</mainClass>
             </configuration>
         </plugin>
-            +-->
 
       </plugins>
     </pluginManagement>
