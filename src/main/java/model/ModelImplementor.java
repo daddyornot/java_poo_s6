@@ -92,7 +92,7 @@ public class ModelImplementor {
 	 * @param coord
 	 * @return la pièce qui se trouve aux coordonnées indiquées
 	 */
-	 PieceModel findPiece(Coord coord) {		// TODO : mettre en "private" après test unitaires
+	 private PieceModel findPiece(Coord coord) {
 		 
 		PieceModel findPiece = null;
 

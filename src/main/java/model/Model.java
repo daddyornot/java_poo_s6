@@ -113,7 +113,7 @@ public class Model implements BoardGame<Coord> {
 	 * et que les coordonnées d'arrivées soient dans les limites du tableau
 	 * et qu'il n'y ait pas de pièce sur la case d'arrivée
 	 */
-	boolean isPieceMoveable(Coord toMovePieceCoord, Coord targetSquareCoord) { // TODO : remettre en "private" après test unitaires
+	private boolean isPieceMoveable(Coord toMovePieceCoord, Coord targetSquareCoord) {
 		boolean bool = false;
 
 		// TODO : à compléter atelier 4 pour gérer les rafles 
@@ -162,7 +162,7 @@ public class Model implements BoardGame<Coord> {
 	 * La PieceModel qui se trouve aux coordonnées passées en paramètre 
 	 * est capable de répondre à cette question (par l'intermédiare du ModelImplementor)
 	 */
-	boolean isMovePiecePossible(Coord toMovePieceCoord, Coord targetSquareCoord, boolean isPieceToCapture) { // TODO : remettre en "private" après test unitaires
+	private boolean isMovePiecePossible(Coord toMovePieceCoord, Coord targetSquareCoord, boolean isPieceToCapture) {
 		return this.implementor.isMovePieceOk(toMovePieceCoord, targetSquareCoord, isPieceToCapture ) ;
 	}
 
@@ -171,7 +171,7 @@ public class Model implements BoardGame<Coord> {
 	 * @param targetSquareCoord
 	 * Déplacement effectif de la PieceModel
 	 */
-	void movePiece(Coord toMovePieceCoord, Coord targetSquareCoord) { // TODO : remettre en "private" après test unitaires
+	private void movePiece(Coord toMovePieceCoord, Coord targetSquareCoord) {
 		this.implementor.movePiece(toMovePieceCoord, targetSquareCoord);
 	}
 
@@ -183,7 +183,7 @@ public class Model implements BoardGame<Coord> {
 		this.implementor.removePiece(toCapturePieceCoord);
 	}
 
-	void switchGamer() { // TODO : remettre en "private" après test unitaires
+	private void switchGamer() {
 		this.currentGamerColor = (PieceSquareColor.WHITE).equals(this.currentGamerColor) ?
 				PieceSquareColor.BLACK : PieceSquareColor.WHITE;
 
