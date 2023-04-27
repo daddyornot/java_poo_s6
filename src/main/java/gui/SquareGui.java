@@ -25,7 +25,15 @@ class SquareGui extends BorderPane implements CheckersSquareGui {
 	private PieceSquareColor squareColor;    		// le carré est Noir ou Blanc
 
 	public SquareGui (PieceSquareColor squareColor) {
-		// ToDo Atelier 2
+		super();
+		this.squareColor = squareColor;
+
+		// la couleur est définie par les valeurs par défaut de configuration
+		Color color = PieceSquareColor.BLACK.equals(this.squareColor) ?
+				GuiConfig.CASEBLACK : GuiConfig.CASEWHITE;
+
+		this.setBackground(new Background(new BackgroundFill(color, CornerRadii.EMPTY, Insets.EMPTY)));
+		this.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 	}
 	
 	/**
