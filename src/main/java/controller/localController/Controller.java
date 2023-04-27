@@ -148,7 +148,27 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 
 		OutputModelData<Integer> outputControllerData = null;
 
-		// TODO atelier 2
+		OutputModelData<Coord> outputModelData = null;
+		InputViewData<Integer> inputViewData = null; 
+
+		Coord toMovePieceCoord = this.transformIndexToCoord(toMovePieceIndex);
+		Coord targetSquareCoord = this.transformIndexToCoord(targetSquareIndex);
+
+		if (this.model != null) {
+			outputModelData  = this.model.moveCapturePromote(toMovePieceCoord, targetSquareCoord);
+
+			if (outputModelData.isMoveDone && this.view != null) {
+
+				inputViewData = new InputViewData<Integer>(
+						toMovePieceIndex, 
+						targetSquareIndex, 
+						transformCoordToIndex(outputModelData.capturedPieceCoord), 
+						transformCoordToIndex(outputModelData.promotedPieceCoord), 
+						outputModelData.promotedPieceColor);
+
+				this.view.actionOnGui(inputViewData);
+			}
+		}
 
 		// Inutile de reconstituer un objetOutputModelData<Integer>, aucun client ne le récupère en mode local
 		return outputControllerData;
