@@ -36,7 +36,7 @@ public class Coord implements Comparable<Coord>{
 
 	/**
 	 * @param coord
-	 * @return true si 'a' <= col < 'a'+MAX et 1 < lig <= MAX
+	 * @return true si 'a' <= col < 'a'+ MAX et 1 <= lig <= MAX
 	 */
 	public static boolean coordonnees_valides(Coord coord){
 
