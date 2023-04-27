@@ -33,6 +33,31 @@ public class Coord implements Comparable<Coord>{
 		return "["+ligne + "," + colonne + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + colonne;
+		result = prime * result + ligne;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Coord other = (Coord) obj;
+		if (colonne != other.colonne)
+			return false;
+		if (ligne != other.ligne)
+			return false;
+		return true;
+	}
+
 
 	/**
 	 * @param coord
@@ -42,7 +67,12 @@ public class Coord implements Comparable<Coord>{
 
 		boolean ret = false;
 
-		// TODO Atelier 1
+		ret = ( 
+				(coord.colonne< 'a' + MAX) && 
+				(coord.colonne>= 'a') && 
+				(coord.ligne<= MAX) && 
+				(coord.ligne> 0) 
+		);
 		
 		return ret;
 	}
@@ -59,11 +89,9 @@ public class Coord implements Comparable<Coord>{
 	 */
 	@Override
 	public int compareTo(Coord o) {
-		int ret = 999;
-		
-		// TODO Atelier 1
-		
-		return ret ;
+		int thisValue = (MAX-this.ligne)*MAX + (this.colonne-'a'+1);
+		int oValue = (MAX-o.ligne)*MAX + (o.colonne-'a'+1);
+		return thisValue - oValue ;
 	}
 
 }

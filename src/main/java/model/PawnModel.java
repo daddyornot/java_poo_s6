@@ -10,48 +10,36 @@ public class PawnModel implements PieceModel{
 
 	private Coord coord;
 	private PieceSquareColor pieceColor;
+	
+	private int direction;
 
 	public PawnModel(Coord coord, PieceSquareColor pieceColor) {
 		super();
 
-		// TODO Atelier 1
+		this.coord = coord;
+		this.pieceColor = pieceColor;
+		this.direction = PieceSquareColor.BLACK.equals(this.getPieceColor()) ? -1 : 1;
 
 	}
 
 	@Override
 	public char getColonne() {
-		char colonne = ' ';
-		
-		// TODO Atelier 1
-
-		return colonne;
+		return coord.getColonne();
 	}
 
 	@Override
 	public int getLigne() {
-		int ligne = -1;
-		
-		// TODO Atelier 1
-
-		return ligne;
+		return coord.getLigne();
 	}
 
 	@Override
 	public boolean hasThisCoord(Coord coord) {
-		boolean hasThisCoord = false;
-		
-		// TODO Atelier 1
-
-		return hasThisCoord;
+		return this.coord.equals(coord);
 	}
 
 	@Override
 	public PieceSquareColor getPieceColor() {
-		PieceSquareColor color = null;
-		
-		// TODO Atelier 1
-
-		return color;	
+		return pieceColor;
 	}
 
 	/* (non-Javadoc)
@@ -59,25 +47,38 @@ public class PawnModel implements PieceModel{
 	 */
 	@Override
 	public String toString() {
-		String st = null;
-
-		// TODO Atelier 1
-
-		return st;
+		return " [" + pieceColor.toString().charAt(0) + coord + "]";
 	}
 
 	@Override
 	public void move(Coord coord) {
-
-		// TODO Atelier 1
-
+		this.coord = coord; 
 	}
 
 	@Override
 	public boolean isMoveOk(Coord targetCoord, boolean isPieceToCapture) {
 		boolean ret = false;
 
-		// TODO Atelier 1
+		int colDistance = targetCoord.getColonne() - this.getColonne();
+		int ligDistance = targetCoord.getLigne() - this.getLigne();
+		int deltaLig = (int) Math.signum(ligDistance);
+		
+		// Cas d'un déplacement en diagonale
+		if (Math.abs(colDistance) == Math.abs(ligDistance)){
+			
+			// sans prise
+			if (!isPieceToCapture) {
+				if (deltaLig == this.direction && Math.abs(colDistance) == 1) {
+					ret = true;
+				}
+			}
+			// avec prise
+			else {
+				if (Math.abs(colDistance) == 2) {
+					ret = true;
+				}
+			}
+		}
 
 		return ret;
 	}

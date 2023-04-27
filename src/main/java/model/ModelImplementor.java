@@ -31,24 +31,27 @@ public class ModelImplementor {
 	public PieceSquareColor getPieceColor(Coord coord) {
 		PieceSquareColor color = null;
 
-		// TODO Atelier 1
+		PieceModel piece = this.findPiece(coord);
+
+		if (piece != null) {
+			color = piece.getPieceColor();
+		}
 		
 		return color;
 	}
 
 	public boolean isPiecehere(Coord coord) {
-		boolean isPiecehere = false;
-
-		// TODO Atelier 1
-		
-		return isPiecehere;
+		return this.findPiece(coord) != null;
 	}
 
 	public boolean isMovePieceOk(Coord initCoord, Coord targetCoord, boolean isPieceToTake) {
 
 		boolean isMovePieceOk = false;
 
-		// TODO Atelier 1
+		PieceModel initPiece = this.findPiece(initCoord);
+		if (initPiece != null) {
+			isMovePieceOk = initPiece.isMoveOk(targetCoord, isPieceToTake ) ;
+		}
 		
 		return isMovePieceOk;
 	}
@@ -58,7 +61,13 @@ public class ModelImplementor {
 
 		boolean isMovePieceDone = false;
 
-		// TODO Atelier 1
+		PieceModel initPiece = this.findPiece(initCoord);
+		if (initPiece != null) {
+
+			// déplacement pièce
+			initPiece.move(targetCoord) ;
+			isMovePieceDone = true;
+		}
 		
 		return isMovePieceDone;
 	}
@@ -87,7 +96,13 @@ public class ModelImplementor {
 		 
 		PieceModel findPiece = null;
 
-		// TODO Atelier 1
+		for(PieceModel piece : this.pieces) {
+
+			if(coord != null && piece.hasThisCoord(coord)) {
+				findPiece = piece;
+				break;
+			}
+		}
 		
 		return findPiece;
 	}
@@ -107,16 +122,16 @@ public class ModelImplementor {
 		String st = "";
 		String[][] damier = new String[ModelConfig.LENGTH][ModelConfig.LENGTH];
 
-//		// création d'un tableau 2D avec les noms des pièces à partir de la liste de pièces
-//		for(PieceModel piece : this.pieces) {
-//
-//			PieceSquareColor color = piece.getPieceColor();
-//			String stColor = (PieceSquareColor.WHITE.equals(color) ? "--B--" : "--N--" );
-//
-//			int col = piece.getColonne() -'a';
-//			int lig = piece.getLigne() -1;
-//			damier[lig][col ] = stColor ;
-//		}
+		// création d'un tableau 2D avec les noms des pièces à partir de la liste de pièces
+		for(PieceModel piece : this.pieces) {
+
+			PieceSquareColor color = piece.getPieceColor();
+			String stColor = (PieceSquareColor.WHITE.equals(color) ? "--B--" : "--N--" );
+
+			int col = piece.getColonne() -'a';
+			int lig = piece.getLigne() -1;
+			damier[lig][col ] = stColor ;
+		}
 
 		// Affichage du tableau formatté
 		st = "     a      b      c      d      e      f      g      h      i      j\n";
