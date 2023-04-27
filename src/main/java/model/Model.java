@@ -17,8 +17,12 @@ import nutsAndBolts.PieceSquareColor;
  * 
  * Les pièces sont capables de se déplacer d'une case en diagonale 
  * si la case de destination est vide
+ * ou de 2 cases en diagonale s'il existe une pièce
+ * du jeu opposé à  prendre sur le trajet
+ * Ces tests sont délégués aux PieceModel
  * 
- * Ne sont pas gérés les prises, les rafles, les dames, 
+ * Les pièces sont des pions, les prises sont gérées 
+ * les rafles ne sont pas gérées, les dames ne sont pas gérées
  * 
  * N'est pas géré le fait que lorsqu'une prise est possible
  * une autre pièce ne doit pas être jouée
@@ -133,9 +137,27 @@ public class Model implements BoardGame<Coord> {
 	 * ou pas de pièce à prendre
 	 */
 	private boolean isThereMaxOnePieceOnItinerary(Coord toMovePieceCoord, Coord targetSquareCoord) {
-		boolean isThereMaxOnePieceOnItinerary = true; // TODO Atelier 2 - initialiser à false
+		boolean isThereMaxOnePieceOnItinerary = false;
 
-		// TODO Atelier 2
+		List<Coord> coordsOnItinerary = this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord);
+
+		if (coordsOnItinerary != null) { 
+
+			int count = 0;
+			Coord potentialToCapturePieceCoord = null;
+			for (Coord coordOnItinerary : coordsOnItinerary) {
+				if (this.implementor.isPiecehere(coordOnItinerary)) {
+					count++;
+					potentialToCapturePieceCoord = coordOnItinerary;
+				}
+			}
+			// Il n'existe qu'1 seule pièce à prendre d'une autre couleur sur la trajectoire
+			if (count == 0 
+					|| (count == 1 && this.currentGamerColor != 
+					this.implementor.getPieceColor(potentialToCapturePieceCoord))) {
+				isThereMaxOnePieceOnItinerary = true;
+			}
+		}
 
 		return isThereMaxOnePieceOnItinerary;
 	}
@@ -148,7 +170,25 @@ public class Model implements BoardGame<Coord> {
 	private Coord getToCapturePieceCoord(Coord toMovePieceCoord, Coord targetSquareCoord) {
 		Coord toCapturePieceCoord = null;
 
-		// TODO Atelier 2
+		List<Coord> coordsOnItinerary = this.implementor.getCoordsOnItinerary(toMovePieceCoord, targetSquareCoord);
+
+		if (coordsOnItinerary != null) { 
+
+			int count = 0;
+			Coord potentialToCapturePieceCoord = null;
+			for (Coord coordOnItinerary : coordsOnItinerary) {
+				if (this.implementor.isPiecehere(coordOnItinerary)) {
+					count++;
+					potentialToCapturePieceCoord = coordOnItinerary;
+				}
+			}
+			// Il n'existe qu'1 seule pièce à prendre d'une autre couleur sur la trajectoire
+			if (count == 0 
+					|| (count == 1 && this.currentGamerColor != 
+					this.implementor.getPieceColor(potentialToCapturePieceCoord))) {
+				toCapturePieceCoord = potentialToCapturePieceCoord;
+			}
+		}
 
 		return toCapturePieceCoord;
 	}

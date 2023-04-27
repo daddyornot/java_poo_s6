@@ -74,7 +74,10 @@ public class ModelImplementor {
 
 	public void removePiece(Coord pieceToTakeCoord) {
 
-		// TODO Atelier 2
+		PieceModel pieceToTake = this.findPiece(pieceToTakeCoord);
+		if (pieceToTake != null) {
+			this.pieces.remove(pieceToTake);
+		}
 		
 	}
 
@@ -82,7 +85,10 @@ public class ModelImplementor {
 	public List<Coord> getCoordsOnItinerary(Coord initCoord, Coord targetCoord) {
 		List<Coord> coordsOnItinerary = null;
 		
-		// TODO Atelier 2
+		PieceModel initPiece = this.findPiece(initCoord);
+		if (initPiece != null) {
+			coordsOnItinerary = initPiece.getCoordsOnItinerary(targetCoord) ;
+		}
 		
 		return coordsOnItinerary;
 	}
