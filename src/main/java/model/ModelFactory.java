@@ -16,7 +16,7 @@ public class ModelFactory {
 				
 		// Création des pion blancs et ajout dans la collection de pièces
 		for ( Coord coord : ModelConfig.WHITE_PIECE_COORDS){
-			pieces.add(new QueenModel(coord, PieceSquareColor.WHITE));
+			pieces.add(new PawnModel(coord, PieceSquareColor.WHITE));
 		}
 
 		// Création des pions noirs et ajout dans la collection de pièces
