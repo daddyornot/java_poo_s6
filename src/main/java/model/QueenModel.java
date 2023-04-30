@@ -17,45 +17,29 @@ public class QueenModel implements PieceModel {
 
 	public QueenModel(Coord coord, PieceSquareColor pieceColor) {
 		super();
-		
-		// TODO atelier 3
-		
+
+		this.coord = coord;
+		this.pieceColor = pieceColor;
 	}
 
 	@Override
 	public char getColonne() {
-		char col = 'z';
-		
-		// TODO atelier 3
-		
-		return col;
+		return coord.getColonne();
 	}
 	
 	@Override
 	public int getLigne() {
-		int ligne = -1;
-		
-		// TODO atelier 3
-		
-		return ligne;
+		return coord.getLigne();
 	}
 	
 	@Override
 	public boolean hasThisCoord(Coord coord) {
-		boolean hasThisCoord = false;
-		
-		// TODO atelier 3
-		
-		return hasThisCoord;
+		return this.coord.equals(coord);
 	}
 
 	@Override
 	public PieceSquareColor getPieceColor() {
-		PieceSquareColor pieceSquareColor = null;
-		
-		// TODO atelier 3
-		
-		return pieceSquareColor;
+		return pieceColor;
 	}
 
 	/* (non-Javadoc)
@@ -63,25 +47,25 @@ public class QueenModel implements PieceModel {
 	 */
 	@Override
 	public String toString() {
-		String st = null;
-
-		// TODO atelier 3
-
-		return st;
+		return " [" + pieceColor.toString().charAt(0) + coord + "]";
 	}
 
 	@Override
 	public void move(Coord coord) {
-		
-		// TODO atelier 3
-		
+		this.coord = coord; 
 	}
 	
 	@Override
 	public boolean isMoveOk(Coord targetCoord, boolean isPieceToCapture) {
 		boolean ret = false;
 		
-		// TODO atelier 3
+		int colDistance = targetCoord.getColonne() - this.getColonne();
+		int ligDistance = targetCoord.getLigne() - this.getLigne();
+
+		// Cas d'un déplacement en diagonale
+		if (Math.abs(colDistance) == Math.abs(ligDistance)){
+			ret = true;
+		}
 		
 		return ret;
 	}
@@ -91,7 +75,22 @@ public class QueenModel implements PieceModel {
 
 		List<Coord> coordsOnItinery = new LinkedList<Coord>(); 
 		
-		// TODO atelier 3
+		int initCol = this.getColonne();
+		int initLig = this.getLigne();
+		int colDistance = targetCoord.getColonne() - this.getColonne();
+		int ligDistance = targetCoord.getLigne() - this.getLigne();
+		int deltaLig = (int) Math.signum(ligDistance);
+		int deltaCol = (int) Math.signum(colDistance);
+
+		// Vérif déplacement en diagonale
+		if (Math.abs(colDistance) == Math.abs(ligDistance)){
+
+			// recherche coordonnées des cases traversées
+			for (int i = 1; i < Math.abs(colDistance); i++) {
+				Coord coord = new Coord((char) (initCol + i*deltaCol), initLig + i*deltaLig);
+				coordsOnItinery.add(coord);
+			}
+		}
 		
 		return coordsOnItinery;
 	}
