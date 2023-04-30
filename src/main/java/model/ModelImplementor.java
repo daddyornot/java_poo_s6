@@ -81,6 +81,26 @@ public class ModelImplementor {
 		
 	}
 
+	public boolean isPiecePromotable(Coord coord) {
+		boolean isPiecePromotable = false;
+
+		PieceModel piece = this.findPiece(coord);
+		if (piece != null && piece instanceof Promotable) {
+			Promotable toPromotePiece = (Promotable) piece;
+			isPiecePromotable = toPromotePiece.isPromotable(); 
+		}
+		return isPiecePromotable;
+	}
+
+	public void promotePiece(Coord coord) {
+
+		PieceModel piece = this.findPiece(coord);
+		if (piece != null) {
+			PieceSquareColor color = piece.getPieceColor();
+			this.pieces.remove(piece);
+			this.pieces.add(new QueenModel(coord, color)); 
+		}
+	}
 	
 	public List<Coord> getCoordsOnItinerary(Coord initCoord, Coord targetCoord) {
 		List<Coord> coordsOnItinerary = null;
@@ -132,8 +152,14 @@ public class ModelImplementor {
 		for(PieceModel piece : this.pieces) {
 
 			PieceSquareColor color = piece.getPieceColor();
-			String stColor = (PieceSquareColor.WHITE.equals(color) ? "--B--" : "--N--" );
-
+			String stColor = (PieceSquareColor.WHITE.equals(color) ? "-%cB%c-" : "-%cN%c-" );
+			char paddingLeft = '(';
+			char paddingRight = ')';
+			if (piece instanceof Promotable) {
+				paddingLeft = paddingRight = '-';
+			}
+			stColor = String.format(stColor, paddingLeft, paddingRight);
+			
 			int col = piece.getColonne() -'a';
 			int lig = piece.getLigne() -1;
 			damier[lig][col ] = stColor ;

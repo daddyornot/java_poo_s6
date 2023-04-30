@@ -21,8 +21,8 @@ import nutsAndBolts.PieceSquareColor;
  * du jeu opposé à  prendre sur le trajet
  * Ces tests sont délégués aux PieceModel
  * 
- * Les pièces sont des pions, les prises sont gérées 
- * les rafles ne sont pas gérées, les dames ne sont pas gérées
+ * Les pièces sont des pions ou des dames, les prises sont gérées, les promotions en dame sont gérées,
+ * les rafles ne sont pas gérées
  * 
  * N'est pas géré le fait que lorsqu'une prise est possible
  * une autre pièce ne doit pas être jouée
@@ -83,9 +83,10 @@ public class Model implements BoardGame<Coord> {
 					this.remove(toCapturePieceCoord);
 
 					// promotion éventuelle de la pièce après déplacement 
-					if (true) {	// TODO : Test à changer atelier 3
-
-						// TODO atelier 3
+					if (this.isPiecePromotable(targetSquareCoord)) {
+						this.promotePiece(targetSquareCoord);
+						toPromotePieceCoord = targetSquareCoord;
+						toPromotePieceColor = this.currentGamerColor;
 					}
 
 					// S'il n'y a pas eu de prise
@@ -221,6 +222,22 @@ public class Model implements BoardGame<Coord> {
 	 */
 	private void remove(Coord toCapturePieceCoord) { 
 		this.implementor.removePiece(toCapturePieceCoord);
+	}
+
+	/**
+	 * @param targetSquareCoord
+	 * @return true si le pion après déplacement peut être promu en dame
+	 */
+	private boolean isPiecePromotable(Coord targetSquareCoord) {
+		return this.implementor.isPiecePromotable(targetSquareCoord);
+	}
+
+	/**
+	 * @param targetSquareCoord
+	 * promotion effective du pion en dame 
+	 */
+	private void promotePiece(Coord targetSquareCoord) {
+		this.implementor.promotePiece(targetSquareCoord);
 	}
 
 	private void switchGamer() {

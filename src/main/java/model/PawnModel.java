@@ -3,7 +3,7 @@ package model;
 
 import nutsAndBolts.PieceSquareColor;
 
-public class PawnModel extends AbstractPieceModel {
+public class PawnModel extends AbstractPieceModel implements Promotable {
 	
 	private int direction;
 
@@ -40,6 +40,36 @@ public class PawnModel extends AbstractPieceModel {
 		}
 
 		return ret;
+	}
+
+	@Override
+	public boolean isPromotable() {
+		boolean ret = false;
+
+		switch (this.getPieceColor()) {
+			case BLACK:
+				ret = (this.getLigne() == 1);
+				break;
+			case WHITE:
+				ret = (this.getLigne() == Coord.MAX);
+				break;
+			default:
+				throw new IllegalStateException("PawnModel is unexpected to have '" 
+									+ this.getPieceColor() + "' as color");
+		}
+		return ret;
+	}
+	
+	/**
+	 * Dans notre contexte les PieceModel sont soit des PawnModel soit des QueenModel
+	 * donc la promotion d'un PawnModel suppose sa destruction et la création d'une QueenModel
+	 * Dans d'autre contexte, on aurait pu imaginer lui changer sa stratégie de déplacement 
+	 * 
+	 * @throws UnsupportedOperationException
+	 */
+	@Override
+	public void promote() {
+		throw new UnsupportedOperationException();
 	}
 
 	
