@@ -12,13 +12,15 @@ import nutsAndBolts.PieceSquareColor;
  */
 public class QueenModel implements PieceModel {
 
-	public QueenModel(Coord coord, PieceSquareColor pieceColor) {
-		super();
-	}
-
 	private Coord coord;
 	private PieceSquareColor pieceColor;
 
+	public QueenModel(Coord coord, PieceSquareColor pieceColor) {
+		super();
+		
+		// TODO atelier 3
+		
+	}
 
 	@Override
 	public char getColonne() {
@@ -48,19 +50,40 @@ public class QueenModel implements PieceModel {
 	}
 
 	@Override
-	public void move(Coord coord) {
-		
-		// TODO atelier 3
-		
-	}
-
-	@Override
 	public PieceSquareColor getPieceColor() {
 		PieceSquareColor pieceSquareColor = null;
 		
 		// TODO atelier 3
 		
 		return pieceSquareColor;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String st = null;
+
+		// TODO atelier 3
+
+		return st;
+	}
+
+	@Override
+	public void move(Coord coord) {
+		
+		// TODO atelier 3
+		
+	}
+	
+	@Override
+	public boolean isMoveOk(Coord targetCoord, boolean isPieceToCapture) {
+		boolean ret = false;
+		
+		// TODO atelier 3
+		
+		return ret;
 	}
 
 	@Override
@@ -73,24 +96,6 @@ public class QueenModel implements PieceModel {
 		return coordsOnItinery;
 	}
 
-
-	
-	@Override
-	public boolean isMoveOk(Coord targetCoord, boolean isPieceToCapture) {
-		boolean ret = false;
-		
-		// TODO atelier 3
-		
-		return ret;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return " ["+pieceColor.toString().charAt(0) + coord + "]";
-	}
 
 }
 
