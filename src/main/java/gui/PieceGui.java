@@ -23,7 +23,7 @@ public class PieceGui extends ImageView implements CheckersPieceGui {
 	@Override
 	public void promote(Image image) {
 
-		// TODO Atelier 2, utile pour Atelier 3
+		this.setImage(image);
 
 	}
 

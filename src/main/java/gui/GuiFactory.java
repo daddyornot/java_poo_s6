@@ -83,7 +83,12 @@ public class GuiFactory {
 	 */
 	public static void PromotePiece(ImageView piece, PieceSquareColor promotedPieceColor) {
 
-		// ToDo Atelier 3
+		Image image = null;
+		if (piece instanceof CheckersPieceGui) { // NB: instanceof also returns false if reference is null 
+			CheckersPieceGui pieceGui = (CheckersPieceGui)piece;
+			image = GuiFactory.createImage(promotedPieceColor, false);
+			pieceGui.promote(image);
+		}
 		
 	}
 	
