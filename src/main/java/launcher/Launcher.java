@@ -65,7 +65,7 @@ public class Launcher extends Application {
 	public void start (Stage primaryStage) {
 
 		primaryStage.setScene(new Scene(this.view, GuiConfig.HEIGHT, GuiConfig.HEIGHT));
-		primaryStage.setTitle("Jeu de dames - Version début Atelier 3");
+		primaryStage.setTitle("Jeu de dames - Version début Atelier 4 (fin atelier 3 activité 1)");
 		primaryStage.show();
 	
 	}
