@@ -32,7 +32,7 @@ public class PieceGui extends ImageView implements CheckersPieceGui {
 
 		// TODO Atelier 2, utile pour Atelier 4
 
-		return false; // A changer 
+		return this.color == gamerColor; // A changer
 	}
 
 }

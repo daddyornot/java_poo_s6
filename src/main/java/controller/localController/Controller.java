@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import model.BoardGame;
 import model.Coord;
 import model.ModelConfig;
+import nutsAndBolts.PieceSquareColor;
 
 
 /**
@@ -172,6 +173,11 @@ public class Controller implements Mediator, BoardGame<Integer>, EventHandler<Mo
 
 		// Inutile de reconstituer un objetOutputModelData<Integer>, aucun client ne le récupère en mode local
 		return outputControllerData;
+	}
+
+	@Override
+	public PieceSquareColor getCurrentGamerColor() {
+		return null;
 	}
 
 

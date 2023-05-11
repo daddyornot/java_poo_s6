@@ -32,6 +32,10 @@ public class Model implements BoardGame<Coord> {
 
 	private PieceSquareColor currentGamerColor;	// couleur du joueur courant
 
+	public PieceSquareColor getCurrentGamerColor() {
+		return currentGamerColor;
+	}
+
 	private ModelImplementor implementor;		// Cet objet sait communiquer avec les PieceModel
 
 	public Model() {

@@ -4,6 +4,8 @@ import gui.View;
 import model.BoardGame;
 import model.Coord;
 
+import java.io.IOException;
+
 /**
  * @author francoise.perrin
  * Le Controller fait le lien entre laView et le Model 
@@ -13,5 +15,5 @@ import model.Coord;
 public interface Mediator {
 	
 	public void setView(View view) ;
-	public void setModel(BoardGame<Coord> model) ;
+	public void setModel(BoardGame<Coord> model) throws IOException;
 }
